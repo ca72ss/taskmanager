@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load bootstrap %}
+         <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<body>
+<style>.material-navbar {
+  border-radius: 0;
+  border: none;
+  width: 100%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.298039);
+}
+.material-navbar__nav > li > .material-navbar__link {
+  -webkit-transition: background-color 0.4s ease-out 0s;
+  transition: background-color 0.4s ease-out 0s;
+}
+.material-navbar {
+  background-color: #eee;
+}
+.material-navbar__brand {
+  color: #000;
+}
+.material-navbar__nav > li > .material-navbar__link {
+  color: #000;
+}
+.material-navbar__nav > li > .material-navbar__link:hover {
+  background-color: #f7f7f7;
+}
+.material-navbar__nav > li > .material-navbar__link:active {
+  background-color: #c9c9c9;
+}
+.materail-navbar__icon-bar {
+  background-color: #000;
+}
+.materil-navbar__collapse {
+  border-top-color: #c9c9c9;
+}
+.material-navbar_primary {
+  background-color: #4092d9;
+}
+.material-navbar_primary .material-navbar__brand {
+  color: #fff;
+}
+.material-navbar_primary .material-navbar__nav > li > .material-navbar__link {
+  color: #fff;
+}
+.material-navbar_primary .material-navbar__nav > li > .material-navbar__link:hover {
+  background-color: #64b2f5;
+}
+.material-navbar_primary .material-navbar__nav > li > .material-navbar__link:active {
+  background-color: #3488d1;
+}
+.material-navbar_primary .materail-navbar__icon-bar {
+  background-color: #fff;
+}
+.material-navbar_primary .materil-navbar__collapse {
+  border-top-color: #3488d1;
+}</style>
+<nav class="navbar material-navbar material-navbar_primary">
+			<div class="container-fluid">
+				<div class="navbar-header material-navbar__header">
+					<button class="navbar-toggle materail-navbar__toogle collapsed" data-toggle="collapse" data-target="#navbar-navbar_primary">
+						<span class="icon-bar materail-navbar__icon-bar"></span>
+						<span class="icon-bar materail-navbar__icon-bar"></span>
+						<span class="icon-bar materail-navbar__icon-bar"></span>
+					</button>
+					<a class="navbar-brand material-navbar__brand" href="#0">TaskManager</a>
+				</div>
+				<div class="collapse navbar-collapse materil-navbar__collapse" id="navbar-navbar_primary">
+					<ul class="nav navbar-nav navbar-right material-navbar__nav">
+						<li><a href="/forms" class="material-navbar__link">Создать задачу</a></li>
+						<li><a href="/view_task" class="material-navbar__link">Список задач</a></li>
+						<li><a href="/logout" class="material-navbar__link">Выход</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+{% block content %}
+{% endblock %}
+</body>
+</html>
