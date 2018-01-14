@@ -8,7 +8,8 @@ from django.contrib.auth import logout
 from django.contrib.auth import login
 from .models import Task, Photo, Video
 from .forms import TaskForm, PhotoForm
-
+from django.db import transaction
+from django.views.generic import CreateView
 
 def view_enter(request):
     if request.user.is_authenticated():
@@ -24,14 +25,16 @@ def view_task(request):
     print(l)
     if l == "<QuerySet ['Students']>":
         if request.user.is_authenticated():
-            task = Task.objects.all()
+            task = Task.objects.filter(user = user)
+            print(task,user)
             return render(request, 'Task.html', {'task': task, 'user': user})
+
         else:
             return render(request, 'Enter.html')
     else:
         if request.user.is_authenticated():
-            task = Task.objects.all()
-            return render(request, 'Task.html', {'task': task, 'user1': user})
+            task = Task.objects.filter(author=user)
+            return render(request, 'Task.html', {'task': task, 'user': user})
         else:
             return render(request, 'Enter.html')
 
@@ -45,6 +48,7 @@ def forms(request):
             form = TaskForm(request.POST)
             if form.is_valid():
                 task = form.save(commit=False)
+                task.author = request.user
                 task.save()
                 return redirect('view_task')
         else:
@@ -59,8 +63,8 @@ def task_edit(request, pk):
     if request.method == "POST":
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
-            task = form.save(commit=False)
-            task.save()
+            task = form.save()
+
             return redirect('view_task')
     else:
         form = TaskForm(instance=task)

@@ -5,11 +5,11 @@ from django.conf import settings
 
 class Task(models.Model):
     # id = models.AutoField(primary_key=True)
+    author = models.ForeignKey(User, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     is_complete = models.BooleanField(default=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tasks_assigned', verbose_name='assigned to',
-                             on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='tasks_assigned', verbose_name='assigned to')
 
     def publish(self):
         self.save()
@@ -25,8 +25,8 @@ class Photo(models.Model):
     def publish(self):
         self.save()
 
-    def __str__(self):
-        return self.image
+    #def __str__(self):
+        #return self.image
 
 
 class Video(models.Model):

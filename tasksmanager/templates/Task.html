@@ -11,7 +11,6 @@
 
 
 {%  for t in task %}
-     {% if t.user == user %}
         <h1>{{ t.name }}  <a class="btn btn-default" href="{% url 'task_edit' pk=t.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h1>
         <p><b>Is complete {{ t.is_complete }}</b></p>
 
@@ -23,18 +22,7 @@
         {% for i in t.images.all %}
          <a href="{{ i.image.url }}"><img src="{{ i.image.url }}" style="width:200px;height:150px;"/></a>
         {% endfor %}
-     {% elif t.user == user1 %}
-         <h1>{{ t.name }}  <a class="btn btn-default" href="{% url 'task_edit' pk=t.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h1>
-         <p><b>Is complete {{ t.is_complete }}</b></p>
-         <p>{{ t.description }}</p>
-        {% for i in t.videos.all %}
-            <iframe width="200" height="150" src="https://www.youtube.com/embed/{{ i.video }}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-        {% endfor %}
-         <br>
-        {% for i in t.images.all %}
-             <a href="{{ i.image.url }}"><img src="{{ i.image.url }}" style="width:200px;height:150px;"/></a>
-        {% endfor %}
-    {% endif %}
+
 {% endfor %}
 
     </div>
